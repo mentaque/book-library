@@ -23,10 +23,10 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    preview_image = models.ImageField(upload_to="books/")
+    preview_image = models.ImageField(upload_to="static/images")
     text = models.TextField()
     creation_year = models.IntegerField()
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="books")
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=255, unique=True)
 

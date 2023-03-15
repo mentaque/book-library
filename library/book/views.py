@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 
-from book.models import Book
+from book.models import Book, Author
 
 
 class MainView(View):
     def get(self, request):
-        book = Book.objects.all()
-        return render(request, 'index.html', {'book': book})
+        authors = Author.objects.prefetch_related("books").all().order_by("name")
+        return render(request, 'index.html', {'authors': authors})
 

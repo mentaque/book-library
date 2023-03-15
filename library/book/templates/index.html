@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>HIIIIIIIIIII</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% for author in authors %}
+        {{ author.name }}<br>
+        {% for book in author.books.all %}
+            {{ book.title }}<br>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
