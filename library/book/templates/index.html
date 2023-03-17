@@ -5,14 +5,19 @@
 {% block content %}
 
 <div class="container">
-    {% for author in authors %}
-        {{ author.name }}<br>
-        {% for book in author.books.all %}
-            {{ book.title }}<br>
+    {% regroup author_list by name.0 as letter_list %}
+    {% for letter in "АБВГДЕЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" %}
+    <div>
+        <h3>{{ letter|upper }}</h3>
+        {% for item in letter_list %}
+            {% if item.grouper == letter %}
+                <div class="container-item">
+                    {{ item }}
+                </div>
+            {% endif %}
         {% endfor %}
-        <hr>
+    </div>
     {% endfor %}
-
 </div>
 
 {% endblock %}

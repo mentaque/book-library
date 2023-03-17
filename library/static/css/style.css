@@ -1,0 +1,155 @@
+/* Начало наполнения страницы */
+
+/* Начало страницы list */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.page {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@media (min-width: 570px) {
+    .container {
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+}
+
+.item-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pic {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.title-disc-container {
+    padding: 5px;
+
+}
+/* Конец страницы list */
+
+/* Начало страницы detail */
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+    align-items: center;
+}
+@media (min-width: 900px) {
+    .detail-container{
+        max-width: 75%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.pic-detail {
+    width: 100px;
+    height: 100px;
+}
+
+.detail-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.review {
+    text-align: center;
+}
+/* Конец страницы detail */
+
+/* Конец наполнения страницы */
+
+
+
+/* Начало шапки */
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* Темный фон при наведении для ссылок панели навигации и
+кнопки вызова выпадающего блока */
+.topnav a:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child){
+        display: none;
+}
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+}
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
+/* Конец шапки */
+
+/* Начало футера */
+
+.footer {
+    padding: 20px;
+    background-color: grey;
+    margin-top: auto;
+    text-align: center;
+}
+
+/* Конец футера */
