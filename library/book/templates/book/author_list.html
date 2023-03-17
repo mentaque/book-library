@@ -1,9 +1,26 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Авторы{% endblock %}
 
 {% block content %}
-{% for author in object_list %}
-  <p>{{ author.name }}</p>
-{% endfor %}
+
+<div class="container">
+    {% regroup author_list by name.0 as letter_list %}
+    {% for letter in "АБВГДЕЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" %}
+    <div>
+        <h3>{{ letter|upper }}</h3>
+        {% for item in letter_list %}
+            {% if item.grouper == letter %}
+                {% for i in item.list %}
+                <div class="container-item">
+                    {{ i.name }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
