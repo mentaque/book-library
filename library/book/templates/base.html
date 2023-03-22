@@ -16,12 +16,22 @@
             <a href="{% url 'main_page' %}">Главная страница</a>
             <a href="{% url 'authors_page' %}">Авторы</a>
             <a href="{% url 'books_page' %}">Книги</a>
-            <a href="#about">О нас</a>
+            <a href="#about">Магазин</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login">Выйти</a>
+            {% else %}
+                <a href="{% url 'register' %}" class="login">Зарегистрироваться</a>
+                <a href="{% url 'login' %}" class="login">Войти</a>
+            {% endif %}
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
     </div>
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+    <div class="footer">
+        <p>TEST PET PROJECT</p>
+        <a href="https://t.me/sklsldflldalpalflfl">MY TELEGRAM</a>
+    </div>
 </div>
 </body>
 </html>

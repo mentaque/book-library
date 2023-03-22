@@ -3,8 +3,32 @@
 {% block title %}{{ author.name }}{% endblock %}
 
 {% block content %}
-<h1>{{ author.name }}</h1>
-{% for book in author.books.all %}
-    {{ book.title }}<br>
-{% endfor %}
+<div class="author-detail container">
+    <hr>
+    <div class="image-text">
+        <img src="{{ author.photo.url }}" width="300" height="400" style="max-width: 100%" alt="">
+        <p>{{ author.short_description|linebreaks }}</p>
+    </div>
+    <hr>
+    <div class="popular-books-container">
+        <div class="title">
+            <h2>Популярные произведения</h2>
+        </div>
+        <div class="popular-books">
+            {% for book in popular_books %}
+                <div class="popular-books-item">
+                    <img src="{{ book.preview_image.url }}" alt="" width="200" height="250" style="max-width: 100%">
+                    <p>{{ book.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div class="biography">
+        <h2>Биография поэта</h2>
+        {{ author.biography|linebreaks }}
+    </div>
+    <hr>
+</div>
+
 {% endblock %}

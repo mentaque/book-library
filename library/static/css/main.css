@@ -3,7 +3,11 @@
     margin: 0;
 }
 
-/* Начало главной страницы*/
+/* Начало наполнение страницы */
+
+a {
+    text-decoration: none;
+}
 
 .page {
     display: flex;
@@ -12,23 +16,156 @@
     min-height: 100vh;
 }
 
-@media (min-width: 570px) {
-    .container {
-        display: flex;
-        justify-content: space-between;
+.all-authors {
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.letter{
+    margin-left: 10px;
+}
+
+@media (max-width: 570px){
+    .authors-container {
+        justify-content: center;
+    }
+    .letter {
+        text-align: center;
     }
 }
 
-.container-item {
+.authors-container{
     display: flex;
-    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.authors-container-item {
+    flex: 1 0 calc(33.33% - 20px);
+    min-width: 200px;
+    max-width: 250px;
+    display: flex;
+    margin-right: 10px;
+    margin-left: 10px;
+    flex-direction: column;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid black;
     flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
 }
 
-/* Конец главной страницы*/
+.author-detail {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.image-text img {
+    float: left;
+    margin-right: 50px;
+}
+
+.biography h2 {
+    text-align: center;
+}
+
+.popular-books-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    text-align: center;
+}
+
+.popular-books {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.popular-books-item {
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.main-page-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.latest-books {
+    display: flex;
+    flex-direction: column;
+}
+
+.latest-books-all{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.latest-book {
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.third-container {
+    display: flex;
+    justify-content: center;
+}
+
+.random-books {
+    display: flex;
+    flex-direction: column;
+}
+
+.random-books-all{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.random-book {
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.closest-birthdays {
+    max-width: 400px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+/* Конец наполнения страницы*/
 
 /* Начало шапки */
 
@@ -45,6 +182,10 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+
+a.login {
+    float: right;
 }
 
 .active {
@@ -87,3 +228,11 @@
 }
 
 /* Конец шапки */
+
+.footer {
+    margin-top: auto;
+    max-height: 100px;
+    max-weight: 100%;
+    background: grey;
+    text-align: center;
+}

@@ -4,20 +4,54 @@
 
 {% block content %}
 
-<div class="container">
-    {% regroup author_list by name.0 as letter_list %}
-    {% for letter in "АБВГДЕЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" %}
-    <div>
-        <h3>{{ letter|upper }}</h3>
-        {% for item in letter_list %}
-            {% if item.grouper == letter %}
-                <div class="container-item">
-                    {{ item }}
+<div class="main-page">
+    <hr>
+    <div class="main-page-item">
+        <div class="first-container">
+            <div class="latest-books">
+                <div class="title">
+                    <h2>Последние добавленные книги</h2>
                 </div>
-            {% endif %}
-        {% endfor %}
+                <div class="latest-books-all">
+                    {% for book in books %}
+                        <div class="latest-book">
+                            <img src="{{ book.preview_image.url }}" width="100" height="150" style="max-width: 100%">
+                            <p>{{ book.title }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <img src="static/images/for-pages/Untitled.svg" alt="" width="2258" style="max-width: 100%; max-height: 500px;">
+        <hr>
+        <div class="second-container">
+            <div class="random-books">
+                <div class="title">
+                    <h2>Не знаете что почитать?</h2>
+                    <p>Мы выбрали для вас 5 случайных книг!</p>
+                </div>
+                <div class="random-books-all">
+                    {% for book in random_books %}
+                        <div class="random-book">
+                            <img src="{{ book.preview_image.url }}" width="100" height="150" style="max-width: 100%">
+                            <p>{{ book.title }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="third-container">
+            <div class="closest-birthdays">
+                <h2>Ближайшие дни рождения авторов</h2>
+                {% for author in authors %}
+                    <a href="{% url 'author_page' author.slug %}">{{ author.name }}</a> - {{ author.date_of_birth }}<br>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}
