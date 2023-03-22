@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Авторы{% endblock %}
+{% block title %}Книги{% endblock %}
 
 {% block content %}
-{% for book in object_list %}
-  <p>{{ book.title }}</p>
-{% endfor %}
+<div class="container">
+  {% for year in data %}
+  {% regroup books by century as century_list %}
+  {% for item in century_list %}
+    {% if item.grouper == year %}
+  <hr>
+    <div class="year-creation">
+      <h2>{{ year }} век</h2>
+    </div>
+      {% for book in item.list %}
+          <div class="book-item">
+            {{ book.title }}
+          </div>
+      {% endfor %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

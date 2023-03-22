@@ -36,10 +36,15 @@ class AllAuthorsListView(ListView):
     context_object_name = 'author_list'
 
 
-class BooksListView(ListView):
-    model = Book
-    queryset = Book.objects.all()
-
+class BooksListView(View):
+    def get(self, request):
+        books = Book.objects.all()
+        data = [21, 20, 19, 18, 17]
+        context = {
+            'books': books,
+            'data': data,
+        }
+        return render(request, 'book/book_list.html', context)
 
 class AuthorView(View):
     def get(self, request, author_slug):

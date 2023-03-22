@@ -3,12 +3,18 @@
 {% block title %}Задайте новый пароль{% endblock %}
 
 {% block content %}
-<div class="reset">
+<div class="container login-form">
   <form method="post">
-    Новый пароль: {{ form.new_password1 }}
-    Подтвердите: {{ form.new_password2 }}
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success">Восстановить</button>
+    <div class="login">
+      <div class="first-par">
+        Новый пароль: {{ form.new_password1 }}
+      </div>
+      <div class="second-par">
+        Подтвердите: {{ form.new_password2 }}
+      </div>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success">Восстановить</button>
+      </div>
   </form>
 </div>
 {% endblock %}

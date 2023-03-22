@@ -6,6 +6,7 @@
 /* Начало наполнение страницы */
 
 a {
+    color: black;
     text-decoration: none;
 }
 
@@ -163,6 +164,10 @@ a {
 
 .btn {
     margin-top: 10px;
+}
+
+.year-creation {
+    text-align: center;
 }
 
 /* Конец наполнения страницы*/

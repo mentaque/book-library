@@ -35,6 +35,7 @@ class Book(models.Model):
     description = models.TextField()
     preview_image = models.ImageField(upload_to="static/images")
     text = models.TextField()
+    century = models.IntegerField(default=20)
     creation_year = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="books")
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
