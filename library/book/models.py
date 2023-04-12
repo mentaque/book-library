@@ -42,11 +42,33 @@ class Book(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     popular_book = models.BooleanField(default=False)
 
+    def average_rating(self):
+        ratings = self.bookrating_set.all()
+        if ratings.exists():
+            return sum(r.rating for r in ratings) / len(ratings)
+        else:
+            return 0
+
     def __str__(self):
         return self.title
 
 
 class User(AbstractUser):
     pass
+
+
+class UserBookRelation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    in_bookmarks = models.BooleanField(default=False)
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 
 

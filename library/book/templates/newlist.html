@@ -1,0 +1,9 @@
+
+  {% for book in search_books %}
+  <a href="{% url 'book_page' book.slug %}">
+    <div class="search-item">
+        <img src="{{ book.preview_image.url }}" width="30" height="40" style="max-width: 100%">
+        <p><strong>{{ book.title }}</strong>, {{ book.author }}<br></p>
+    </div>
+  </a>
+  {% endfor %}

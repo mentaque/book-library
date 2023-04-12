@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
-from book.models import Book, Genre, Author
+from book.models import Book, Genre, Author, UserBookRelation, Review
 
 User = get_user_model()
 
@@ -25,3 +25,5 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Genre)
+admin.site.register(UserBookRelation)
+admin.site.register(Review)

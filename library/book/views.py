@@ -1,15 +1,17 @@
 from datetime import timedelta
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
 from django.shortcuts import render, redirect
 from django.utils.datetime_safe import date
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView
 
 from book.forms import UserCreationForm
-from book.models import Book, Author
+from book.models import Book, Author, UserBookRelation, Review
 
 
 class MainView(View):
@@ -46,6 +48,12 @@ class BooksListView(View):
         }
         return render(request, 'book/book_list.html', context)
 
+
+def search(request):
+    q = request.GET.get('q', '')
+    search_books = Book.objects.filter(title__iregex=q)
+    return render(request, 'newlist.html', {'search_books': search_books})
+
 class AuthorView(View):
     def get(self, request, author_slug):
         author = Author.objects.get(slug=author_slug)
@@ -60,7 +68,34 @@ class AuthorView(View):
 class BookView(View):
     def get(self, request, book_slug):
         book = Book.objects.get(slug=book_slug)
-        return render(request, 'book.html', {'book': book})
+        reviews = Review.objects.filter(book=book)[::-1]
+        if request.user.is_authenticated:
+            relation = UserBookRelation.objects.filter(user=request.user, book=book).exists()
+            context = {
+                'book': book,
+                'relation': relation,
+                'reviews': reviews,
+            }
+        else:
+            context = {
+                'book': book,
+                'reviews': reviews,
+            }
+        return render(request, 'book.html', context)
+
+    @method_decorator(login_required, name='dispatch')
+    def post(self, request, book_slug):
+        book = Book.objects.get(slug=book_slug)
+        if 'text' in request.POST:
+            text = request.POST.get('text')
+            Review.objects.create(user=request.user, book=book, text=text)
+        else:
+            relation = UserBookRelation.objects.filter(user=request.user, book=book)
+            if relation.exists():
+                relation.delete()
+            else:
+                UserBookRelation.objects.create(user=request.user, book=book)
+        return redirect('book_page', book_slug=book_slug)
 
 
 class Register(View):
@@ -82,7 +117,7 @@ class Register(View):
             login(request, user)
             return redirect('main_page')
         context = {
-            'form': form
+            'form': form,
         }
         return render(request, self.template_name, context)
 

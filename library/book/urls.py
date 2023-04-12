@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from book.views import MainView, AuthorView, AllAuthorsListView, BooksListView, BookView, Register, ResetView, \
-    ResetDoneView, ResetConfirmView, ResetCompleteView
+    ResetDoneView, ResetConfirmView, ResetCompleteView, search
 
 urlpatterns = [
     path('', MainView.as_view(), name='main_page'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('password_reset/done/', ResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', ResetConfirmView.as_view(), name="password_reset_confirm"),
     path('reset/done/', ResetCompleteView.as_view(), name="password_reset_complete"),
+    path('search/', search, name="search-books")
 ]

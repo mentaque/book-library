@@ -4,21 +4,54 @@
 
 {% block content %}
 <div class="container">
+  <div id="search-container" class="search-container">
+      <div class="search-form">
+          <input type="text" class="form-control" id="myInput" placeholder="Введите название книги..." name="q" hx-get="{% url 'search-books' %}" hx-trigger="keyup changed delay:150ms" hx-target="#search-results">
+      </div>
+      <div class="search-results" id="true-search-results">
+        <div id="search-results">
+            {% include 'newlist.html' %}
+        </div>
+      </div>
+  </div>
   {% for year in data %}
   {% regroup books by century as century_list %}
-  {% for item in century_list %}
-    {% if item.grouper == year %}
-  <hr>
-    <div class="year-creation">
-      <h2>{{ year }} век</h2>
-    </div>
-      {% for book in item.list %}
-          <div class="book-item">
-            {{ book.title }}
+    {% for item in century_list %}
+      {% if item.grouper == year %}
+      <hr>
+        <div class="year-container">
+          <div class="year-creation">
+            <h2>{{ year }} век</h2>
           </div>
-      {% endfor %}
-    {% endif %}
+          <div class="book-container">
+          {% for book in item.list %}
+              <div class="book-item">
+                <a href="{% url 'book_page' book.slug %}">
+                <img src="{{ book.preview_image.url }}" width="150" height="200" style="max-width: 100%" alt="">
+                <p>{{ book.title }}</p>
+                </a>
+              </div>
+          {% endfor %}
+          </div>
+        </div>
+      {% endif %}
     {% endfor %}
-    {% endfor %}
+  {% endfor %}
 </div>
+<script>
+  var searchResults = document.getElementById("true-search-results");
+  var searchInput = document.getElementById("myInput");
+
+  document.addEventListener("click", function (event) {
+    if (event.target !== searchResults && event.target !== searchInput) {
+      searchResults.style.display = "none";
+    }
+  });
+  searchInput.addEventListener("click", function (event) {
+    if (searchResults.style.display === "none") {
+      searchResults.style.display = "block";
+    }
+  });
+
+</script>
 {% endblock %}

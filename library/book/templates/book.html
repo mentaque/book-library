@@ -3,6 +3,67 @@
 {% block title %}{{ book.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ book.title }}</h1>
-<p>{{ book.text }}</p>
+<div class="container">
+    <div class="book-page">
+        <hr>
+        <div class="book-info">
+            <img src="{{ book.preview_image.url }}" width="275" height="400" style="max-width: 100%" alt="">
+            <div class="info-container">
+                <p><strong>{{ book.description|linebreaks }}</strong></p>
+                <p>Автор: <a href="{% url 'author_page' book.author.slug %}"><strong>{{ book.author.name }}</strong></a></p>
+                <p>Жанр: <strong>{{ book.genre.name }}</strong></p>
+                <p>Год первого выпуска: <strong>{{ book.creation_year }}</strong></p>
+                {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {% if not relation %}
+                    <button type="submit" class="btn btn-primary">В закладки</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-light">В закладках</button>
+                    {% endif %}
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <div class="book-text">
+            <h2>Читать онлайн</h2>
+            <p>{{ book.text|linebreaks }}</p>
+        </div>
+        <hr>
+        {% if user.is_authenticated %}
+        <div class="review-creation">
+            <form method="post">
+                {% csrf_token %}
+                <div class="review-creation-title">
+                    <h2>Добавьте отзыв о книге</h2>
+                </div>
+                <div class="review-add">
+                    <div class="review-add-text">
+                        <textarea name="text" id="text" style="min-width: 800px; min-height: 300px;"></textarea>
+                    </div>
+                    <div class="review-btn">
+                        <button type="submit" class="btn btn-success">Добавить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr>
+        {% endif %}
+        <div class="review-container">
+            {% for review in reviews %}
+            <div class="review-item">
+                <div class="review-username">
+                    <strong>{{ review.user.username }}</strong>
+                </div>
+                <div class="review-text">
+                    {{ review.text }}
+                </div>
+            </div>
+            {% empty %}
+            <p><strong>Никто ещё не добавил отзыв, станьте первым!</strong></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

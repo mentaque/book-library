@@ -17,17 +17,14 @@
                     <div class="authors-container">
                         {% for i in item.list %}
                         <div class="authors-container-item">
+                            <a href="{% url 'author_page' i.slug %}">
                             <div class="photo">
-                                <a href="{% url 'author_page' i.slug %}"><img src="{{ i.photo.url }}" width="200" height="250" style="max-width: 100%" alt=""></a>
+                                <img src="{{ i.photo.url }}" width="200" height="250" style="max-width: 100%" alt="">
                             </div>
                             <div class="name">
                                 {{ i.name }}
                             </div>
-                            <div class="books">
-                                {% for book in i.books.all %}
-                                    {{ book.title }}
-                                {% endfor %}
-                            </div>
+                            </a>
                         </div>
                         {% endfor %}
                     </div>

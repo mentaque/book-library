@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
+from book.models import Book
+
 User = get_user_model()
 
 class UserCreationForm(UserCreationForm):

@@ -17,8 +17,10 @@
         <div class="popular-books">
             {% for book in popular_books %}
                 <div class="popular-books-item">
+                    <a href="{% url 'book_page' book.slug %}">
                     <img src="{{ book.preview_image.url }}" alt="" width="200" height="250" style="max-width: 100%">
                     <p>{{ book.title }}</p>
+                    </a>
                 </div>
             {% endfor %}
         </div>
