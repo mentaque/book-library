@@ -17,10 +17,10 @@
             <a href="{% url 'main_page' %}">Главная страница</a>
             <a href="{% url 'authors_page' %}">Авторы</a>
             <a href="{% url 'books_page' %}">Книги</a>
-            <a href="#shop">Магазин</a>
+            <a href="{% url 'shop_page' %}">Магазин</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="login">Выйти</a>
-                <a href="#profile" class="login">Профиль: <strong>{{ user }}</strong></a>
+                <a href="{% url 'profile_page' %}" class="login">Профиль: <strong>{{ user }}</strong></a>
             {% else %}
                 <a href="{% url 'register' %}" class="login">Зарегистрироваться</a>
                 <a href="{% url 'login' %}" class="login">Войти</a>

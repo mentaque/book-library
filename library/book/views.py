@@ -12,6 +12,7 @@ from django.views.generic import ListView
 
 from book.forms import UserCreationForm
 from book.models import Book, Author, UserBookRelation, Review
+from bookshop.models import AddToCart
 
 
 class MainView(View):
@@ -96,6 +97,19 @@ class BookView(View):
             else:
                 UserBookRelation.objects.create(user=request.user, book=book)
         return redirect('book_page', book_slug=book_slug)
+
+
+class ProfileView(View):
+    def get(self, request):
+        subscription = UserBookRelation.objects.filter(user=request.user)
+        subscription_count = subscription.count()
+        cart = AddToCart.objects.filter(user=request.user)
+        context = {
+            'subscription': subscription,
+            'subscription_count': subscription_count,
+            'cart': cart,
+        }
+        return render(request, 'profile.html', context)
 
 
 class Register(View):

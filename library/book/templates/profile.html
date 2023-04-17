@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Личный профиль{% endblock %}
+
+{% block content %}
+<h2>Корзина</h2>
+<div>
+    {% for item in cart %}
+        {{ item.product.name }} {{ item.quantity }}<br>
+    {% endfor %}
+</div>
+<h2>Закладки</h2>
+<div>
+    {% for sub in subscription %}
+        {{ sub.book.title }}<br>
+    {% endfor %}
+</div>
+{% endblock %}

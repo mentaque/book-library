@@ -254,7 +254,113 @@ a {
     border: 1px solid grey;
     margin-bottom: 5px;
 }
+
 /* Конец наполнения страницы*/
+
+/* Начало магазина */
+
+.shop-container {
+    display: flex;
+    justify: center;
+
+}
+
+.shop {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+}
+
+.product-inner {
+   width: 300px;
+   background: white;
+   margin-left: 20px;
+   margin-top: 5px;
+   text-align: center;
+   border-bottom: 2px solid #ebebec;
+   transition: .2s linear;
+}
+
+.product-inner:hover {
+   border-color: #bca480;
+}
+
+.product-wrap {
+   position: relative;
+   overflow: hidden;
+   margin-bottom: 15px;
+}
+.product-wrap img {
+   display: block;
+}
+.actions {
+   position: absolute;
+   left: 0;
+   bottom: -20%;
+   width: 100%;
+   background: rgba(59, 62, 67, 0.75);
+   transition: .3s linear;
+}
+
+.product-inner:hover .actions {
+   bottom: 0;
+}
+
+.actions button, .actions a {
+   text-decoration: none;
+   float: left;
+   width: 50%;
+   color: grey;
+   padding: 15px 0;
+   transition: .2s linear;
+}
+
+.actions button:hover, .actions a:hover {
+   background: rgba(59, 62, 67, 0.85);
+}
+
+.product-info {
+   padding-bottom: 10px;
+   font-family: 'Noto Sans', sans-serif;
+}
+.product-title {
+   margin: 0 0 10px 0;
+   font-family: 'Noto Sans', sans-serif;
+}
+.product-title a {
+   text-decoration: none;
+   color: #1e1e1e;
+   font-weight: 400;
+   font-size: 16px;
+}
+.price {
+   font-weight: bold;
+   color: #bca480;
+}
+
+.sidenav {
+    margin-right: 50px;
+    width: 200px;
+    top: 20px;
+    background: #eee;
+    overflow-x: hidden;
+    border-right: 5px solid black;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #2196F3;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #064579;
+}
+
+/* Конец магазина */
 
 /* Начало шапки */
 

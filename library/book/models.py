@@ -42,13 +42,6 @@ class Book(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     popular_book = models.BooleanField(default=False)
 
-    def average_rating(self):
-        ratings = self.bookrating_set.all()
-        if ratings.exists():
-            return sum(r.rating for r in ratings) / len(ratings)
-        else:
-            return 0
-
     def __str__(self):
         return self.title
 
