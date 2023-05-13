@@ -1,4 +1,4 @@
-# library ПРОЕКТ В РАЗРАБОТКЕ
+# library 
 pet-project библиотеки, реализованный на django.
 
 ##
