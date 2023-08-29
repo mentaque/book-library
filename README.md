@@ -1,8 +1,11 @@
-# library 
-pet-project библиотеки, реализованный на django.
-
-##
-В данном проекте реализованы функции библиотеки, поиск по добавленным книгам и взаимодейстию с ними, представлена страница с авторами, магазин, где можно добавлять в корзину и просматривать книги, регистрация и аутентификация, профиль, где можно посмотреть добавленные в корзину книги и закладки книг.
-
-##
-В некоторых местах не доделана frontend часть. В процессе разработки: оплата корзины, обработка ошибок и исключений, написание тестов
+# Pet-project library
+Pet-project using Django. Main purpose was to **use ajax queries**, **django templates** and **code practice**.
+## Technologies
+- Django
+- Ajax
+- SQLite
+## Features
+- Django templates
+- Simple authentication
+- CRUD operations with books
+- Ajax queries
